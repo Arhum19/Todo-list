@@ -18,15 +18,20 @@ public class todo {
     private Instant createdAt;
     private Instant updatedAt;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public todo() {}
 
-    public todo(Long id, String title, String description, boolean completed, Instant createdAt, Instant updatedAt) {
+    public todo(Long id, String title, String description, boolean completed, Instant createdAt, Instant updatedAt, User user) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.completed = completed;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.user = user;
     }
 
     //get and set
@@ -49,5 +54,7 @@ public class todo {
     public Instant getUpdatedAt() {return updatedAt;}
     public void setUpdatedAt(Instant updatedAt) {this.updatedAt = updatedAt;}
 
+    public User getUser() {return user;}
+    public void setUser(User user) {this.user = user;}
 
 }

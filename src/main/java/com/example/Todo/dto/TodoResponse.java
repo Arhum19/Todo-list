@@ -13,6 +13,15 @@ public class TodoResponse {
 
     public TodoResponse() {}
 
+    public TodoResponse(Long id, String title, String description, boolean completed, Instant createdAt, Instant updatedAt) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.completed = completed;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getTitle() { return title; }

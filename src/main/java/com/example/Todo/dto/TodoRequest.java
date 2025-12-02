@@ -14,11 +14,7 @@ public class TodoRequest {
     private boolean completed;
     public  TodoRequest() {
     }
-    public TodoRequest(String title, String description,boolean completed) {
-        this.title = title;
-        this.description = description;
-        this.completed = completed;
-    }
+
 
     public String getTitle() {return title;}
     public void setTitle(String title) {this.title = title;}
