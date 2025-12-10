@@ -27,4 +27,6 @@ public class UserService {
         return repo.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
+
+
 }

@@ -136,6 +136,7 @@ class TodoServiceTest {
 
     }
 
+    @Test
     void TestUpdateTodo_Success(){
         todo existing = new todo();
         existing.setId(1L);
@@ -160,6 +161,7 @@ class TodoServiceTest {
         assertTrue(res.isCompleted());
     }
 
+    @Test
     void TestUpdateTodo_NotExist(){
         when(todoRepo.findById(1L)).thenReturn(Optional.empty());
 
@@ -173,6 +175,7 @@ class TodoServiceTest {
         );
     }
 
+    @Test
     void TestUpdateTodo_NotOwned(){
         User otherUser = new User();
         otherUser.setId(2L);
@@ -195,4 +198,22 @@ class TodoServiceTest {
                 todoService.updateTodo(user, 1L, tr)
         );
     }
+
+    @Test
+    void TestToggleComplete_Success(){
+        todo existing = new todo();
+        existing.setId(1L);
+        existing.setUser(user);
+        existing.setCompleted(false);
+
+        when(todoRepo.findById(1L)).thenReturn(Optional.of(existing));
+        when(todoRepo.save(any(todo.class))).thenAnswer(i -> i.getArgument(0));
+
+        TodoResponse res = todoService.toggleComplete(user, 1L, true);
+
+        assertEquals(1L, res.getId());
+        assertTrue(res.isCompleted());
+    }
+
+
 }
